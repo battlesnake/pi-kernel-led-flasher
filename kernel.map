@@ -1,0 +1,91 @@
+
+Discarded input sections
+
+ .bss           0x00000000        0x0 build/devices.o
+ .ARM.attributes
+                0x00000000        0x0 build/devices.o
+ .glue_7        0x00000000        0x0 build/devices.o
+ .glue_7t       0x00000000        0x0 build/devices.o
+ .vfp11_veneer  0x00000000        0x0 build/devices.o
+ .janus_2cc_veneer
+                0x00000000        0x0 build/devices.o
+ .v4_bx         0x00000000        0x0 build/devices.o
+ .bss           0x00000000        0x0 build/sleep.o
+ .ARM.attributes
+                0x00000000        0x0 build/sleep.o
+ .glue_7        0x00000000        0x0 build/sleep.o
+ .glue_7t       0x00000000        0x0 build/sleep.o
+ .vfp11_veneer  0x00000000        0x0 build/sleep.o
+ .janus_2cc_veneer
+                0x00000000        0x0 build/sleep.o
+ .v4_bx         0x00000000        0x0 build/sleep.o
+ .bss           0x00000000        0x0 build/main.o
+ .ARM.attributes
+                0x00000000        0x0 build/main.o
+ .glue_7        0x00000000        0x0 build/main.o
+ .glue_7t       0x00000000        0x0 build/main.o
+ .vfp11_veneer  0x00000000        0x0 build/main.o
+ .janus_2cc_veneer
+                0x00000000        0x0 build/main.o
+ .v4_bx         0x00000000        0x0 build/main.o
+ .bss           0x00000000        0x0 build/gpioenable.o
+ .ARM.attributes
+                0x00000000        0x0 build/gpioenable.o
+ .glue_7        0x00000000        0x0 build/gpioenable.o
+ .glue_7t       0x00000000        0x0 build/gpioenable.o
+ .vfp11_veneer  0x00000000        0x0 build/gpioenable.o
+ .janus_2cc_veneer
+                0x00000000        0x0 build/gpioenable.o
+ .v4_bx         0x00000000        0x0 build/gpioenable.o
+ .bss           0x00000000        0x0 build/setpin.o
+ .ARM.attributes
+                0x00000000        0x0 build/setpin.o
+ .glue_7        0x00000000        0x0 build/setpin.o
+ .glue_7t       0x00000000        0x0 build/setpin.o
+ .vfp11_veneer  0x00000000        0x0 build/setpin.o
+ .janus_2cc_veneer
+                0x00000000        0x0 build/setpin.o
+ .v4_bx         0x00000000        0x0 build/setpin.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD build/devices.o
+LOAD build/sleep.o
+LOAD build/main.o
+LOAD build/gpioenable.o
+LOAD build/setpin.o
+
+.init           0x00008000       0x4c
+ *(.init)
+ .init          0x00008000       0x4c build/main.o
+                0x00008000                _start
+
+.text           0x0000804c       0xa0
+ *(.text)
+ .text          0x0000804c        0x0 build/devices.o
+ .text          0x0000804c       0x3c build/sleep.o
+                0x0000804c                Sleep
+ .text          0x00008088        0x0 build/main.o
+ .text          0x00008088       0x40 build/gpioenable.o
+                0x00008088                EnableGPIO
+ .text          0x000080c8       0x24 build/setpin.o
+                0x000080c8                SetPin
+
+.data           0x000080ec       0x10
+ *(.data)
+ .data          0x000080ec        0x8 build/devices.o
+                0x000080f0                dev_gpio
+                0x000080ec                dev_timer
+ .data          0x000080f4        0x0 build/sleep.o
+ .data          0x000080f4        0x4 build/main.o
+ .data          0x000080f8        0x4 build/gpioenable.o
+ .data          0x000080fc        0x0 build/setpin.o
+
+/DISCARD/
+ *(*)
+OUTPUT(build/output.elf elf32-littlearm)
