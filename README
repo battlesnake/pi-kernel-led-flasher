@@ -1,0 +1,18 @@
+Simple RasPi kernel to flash a pattern on the OK LED
+
+(c) Mark K Cowan, mark@battlesnake.co.uk
+
+Makefile: Alex Chadwick (see 'Makefile' and 'LICENSE')
+
+Requires GNU ARM toolchain:
+[http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/downloads.html]
+
+Execute make:
+$ make
+
+Backup your existing kernel from the FAT partition on the RasPi's SD card
+Copy the 'kernel.img' file produced by the make script to the SD card.
+Insert SD card into the Pi and boot it.
+
+In main.s, the pattern can be changed by editing the 'bitpattern' 32-bit
+integer constant.
